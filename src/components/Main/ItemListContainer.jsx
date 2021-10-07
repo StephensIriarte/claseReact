@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
-import ItemCount from './ItemCount'
+import React from 'react'
+import Items from './Items'
 
 const ItemListContainer = ({greeting}) => {
+
 
     return (
         <div>
             {greeting}
-            <ItemCount stock = {7}/>
+           <Items/>
         </div>
     )
 }
