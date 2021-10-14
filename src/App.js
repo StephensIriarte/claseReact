@@ -18,6 +18,9 @@ function App() {
       <Route exact path="/">
         <ItemListContainer/>
       </Route>
+      <Route exact path="/Menu">
+        <ItemListContainer/>
+      </Route>
 
       </Switch>
       </BrowserRouter>

@@ -1,5 +1,6 @@
 import React from 'react'
-import ItemCount from './ItemCount'
+import ItemCount from './ItemCount';
+import './items.css';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar  from '@material-ui/core/ImageListItemBar';
@@ -11,24 +12,13 @@ const Items = ({id,nombre, stock, precio, img}) => {
     
 
     return (
+        <div>
+            <div class="image"> <Link to={`/detailProducto/${id}`}><img src={img} alt="" width="100" height="100" /></Link> </div>
+            <p>Producto: <span>{nombre}</span><br/></p>
+            <p class="price">Precio: <strong>{precio} </strong></p>
+            <span><ItemCount stock = {stock}/> </span><br />
 
-                <ImageListItem key={id}>
-                
-                    <img 
-                        src={`${img}?w=164&h=164&fit=crop&auto=format`}
-                        srcSet={`${img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                        alt={nombre}
-                        loading="lazy"
-                    />
-                    <Link to={`/detailProducto/${id}`}>
-                    <ImageListItemBar
-                        title={nombre}
-                        subtitle={<span>Precio: {precio}</span>}
-                        position="below"
-                       
-                /></Link>
-                <ItemCount stock = {stock}/>   
-                </ImageListItem>
+        </div>     
      
     )
 }

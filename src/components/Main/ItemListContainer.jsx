@@ -30,8 +30,10 @@ getProducts.then((result) => {
 
 
     return (
-        <div>
-         <ImageList sx={{ width: 850, height: 800 }} cols={4} rowHeight={200}>
+      
+            
+                <div  class="items">
+                    <ImageList sx={{ width: 850, height: 800 }} cols={4} rowHeight={200}>
                           {result && result.map((products) => (
                              <Items 
                                 id ={products.id}
@@ -41,8 +43,10 @@ getProducts.then((result) => {
                                 img ={products.img}/> 
                            
                            ))}
-        </ImageList>         
-        </div>                         
+                    </ImageList>         
+                </div>
+          
+                                   
     )
 }
 

@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
    const { id } = useParams();
 
   
-   const itemDetalle = products.find( itemPro => itemPro.id = { id } )
+   const itemDetalle = products.find( itemPro => itemPro.id === id  )
    //const itemDetalle = products.find( itemPro => itemPro.id = '2' )
 
   console.log(itemDetalle)
