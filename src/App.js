@@ -4,29 +4,35 @@ import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/Main/ItemListContainer';
 import ItemDetailContainer from './components/Main/ItemDetailContainer';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { cartContext } from './context/cartContext';
+import CartContextProvider  from './context/cartContext';
+import { useState } from 'react';
+import Cart from '../src/components/Main/Cart'
 
 function App() {
 
+
+  
+
+
   return (
     <div>
-      <cartContext.Provider>
+      <CartContextProvider>
         <BrowserRouter>
         <NavBar/>
         <Switch>
         <Route exact path="/detailProducto/:id">
           <ItemDetailContainer/>
         </Route>
-        <Route exact path="/">
+        <Route exact path="/Menu/:tipo">
           <ItemListContainer/>
         </Route>
-        <Route exact path="/Menu">
-          <ItemListContainer/>
+        <Route exact path="/Cart/:id">
+          <Cart/>
         </Route>
 
         </Switch>
         </BrowserRouter>
-      </cartContext.Provider>
+      </CartContextProvider>
     </div>
   );
 

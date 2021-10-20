@@ -1,20 +1,20 @@
 import React from 'react';
 import CartWidget from './CartWidget';
 import './NavBar.css';
-
+import { Link } from 'react-router-dom';
 const NavBar = () => {
 
 
 return (
 
     <div class="topnav">
-    <a class="active" href="#promociones">Promociones</a>
-    <a href="snacks">Snacks o Mixs</a>
-    <a href="#frutosSecos">Frutos Secos</a>
-    <a href="#frutasDesi">Frutas Deshidratada</a>
-    <a href="#semillas">Semillas</a>
-    <a href="#chocolates">Chocolates</a>
-    <a href="#carrito"><CartWidget/></a>  
+    <Link to={`4`}><a class="active" href="#promociones">Promociones</a></Link>
+    <Link to={`/Menu/4`}><a href="snacks">Snacks o Mixs</a></Link> 
+    <Link to={`/Menu/1`}><a href="#frutosSecos">Frutos Secos</a></Link>
+    <Link to={`/Menu/2`}><a href="#frutasDesi">Frutas Deshidratada</a></Link>
+    <Link to={`/Menu/3`}><a href="#semillas">Semillas</a></Link>
+    <Link to={`/Menu/5`}><a href="#chocolates">Chocolates</a></Link>
+    <Link to={`/Cart/5`}><a href="Cart"><CartWidget/></a></Link>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
   </div>
 )
