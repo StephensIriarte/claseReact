@@ -1,42 +1,33 @@
-import React, {useEffect, useState} from 'react'
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import { useState, useContext} from 'react';
+import { CartContext } from '../context/cartContext';
+import { products } from '../data/data.js'
 import Card from '@material-ui/core/Card';
-import { useParams} from 'react-router'
-import { products } from '../data/data';
+import Typography from '@material-ui/core/Typography';
+import ItemCount from './ItemCount';
 
 
 const Cart = () => {
-    
-    const { id } = useParams();
-    const itemTipo = products.filter( itemPro => itemPro.id === id)  
-    
-    
-    const [result , setResul] = useState(null)
 
-    const getProducts = new Promise ((resolve, reject) => {
-        setTimeout(() => {   
-        resolve(products);
-    }, 3000 );
-    });
+     console.log("aquiii prueba")  
 
-    getProducts.then((result) => {
-        
-        setResul(result)
-    },err => {
-        //console.log(result)
-    }).catch((error) => {
-        //console.log(result)
-    }).finally(() => {
-        //console.log(result)
-    })
-
-    //console.log(result)
+    const {cartList} = useContext(CartContext)
+    console.log("aquiiiii")
+    console.log({cartList})
 
     return (
         <div>
-             <h1> Tienes {id }  productos</h1> 
+               <Card sx={{ maxWidth: 345 }}>
+                     {cartList.map(item => <div class="image" key={item.id}> <img src={item.img} alt="" width="300" height="300" /> 
+                     <Typography align='center' gutterBottom variant="h5" component="div">{item.nombre}</Typography>
+                     <p class="price" align='center'>Precio: <strong>{item.precio} </strong></p>
+                     <div align='center'><span ><ItemCount  stock = {item.stock} /> </span><br /> </div> 
+                     </div>)}
+                     
+               </Card>
         </div>
     )
 }
 
 export default Cart
+

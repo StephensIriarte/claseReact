@@ -1,7 +1,4 @@
 import React from 'react'
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar  from '@material-ui/core/ImageListItemBar';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import Card from '@material-ui/core/Card';
