@@ -1,22 +1,30 @@
 import React , {useState} from 'react'
 import Button  from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 
-
-const ItemCount = ({stock}) => {
+const ItemCount = ({stock, initial, onAdd}) => {
     
-    const [clicks , setCricks] = useState(0)
+    const [clicks , setclicks] = useState(initial)
+    const [cambiarBoton, setCambiarBoton] = useState(true)
+    const [button, setbutton]= useState("Añadir al carrito")
 
     const addClick = () => {
-       if (clicks < stock) setCricks(clicks + 1) ; 
+       if (clicks < stock) setclicks(clicks + 1) ; 
     }
 
     const removeClick = () => {
-       if (clicks >= 1 ) setCricks(clicks - 1) ; 
+       if (clicks >= 1 ) setclicks(clicks - 1) ; 
     }
     
-    console.log ({stock})
+   
+    const agregarCarrito=()=>{
+        onAdd(clicks)
+        if( button === "Añadir al carrito") 
+        setCambiarBoton(false)
 
+
+    }
     return (
 
         
@@ -29,6 +37,18 @@ const ItemCount = ({stock}) => {
                                     <td><Button variant="text"  onClick={()=>removeClick()}>-</Button></td>
                                 </tr>
                                 </table>
+                                {cambiarBoton ?
+                                    <div align='center'><button class="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded" onClick={agregarCarrito}>{button}</button></div>
+                                                    
+                                : 
+                                <div>
+                                    <Link to="/Cart" >
+                                    <button class="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Terminar Compra</button>      
+                                    </Link>
+                                </div>
+                                
+                                }
+
 
         </div>
     )

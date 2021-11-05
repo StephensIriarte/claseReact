@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState, useContext} from 'react';
-import { CartContext } from '../context/cartContext';
-import { products } from '../data/data.js'
+import { useState, useContext , cartContext} from 'react';
+import { useCartContext } from '../context/cartContext'
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import ItemCount from './ItemCount';
@@ -11,9 +10,23 @@ const Cart = () => {
 
      console.log("aquiii prueba")  
 
-    const {cartList} = useContext(CartContext)
+    const {cartList} = useContext(cartContext)
     console.log("aquiiiii")
-    console.log({cartList})
+
+   let orden = {}
+
+   orden.buyer = {name: 'Juan', phone: 'mi telefono',  email: 'pepe@aol.com'}
+   ///orden.total = precioTotal();
+   orden.items = cartList.map(cartItem => {
+        const id = cartItem.item.id;
+        const nombre = cartItem.item.nomnre;
+        const precio = cartItem.item.precio * cartItem.quantity;
+
+        return {id, nombre, precio}
+
+
+   })
+   
 
     return (
         <div>

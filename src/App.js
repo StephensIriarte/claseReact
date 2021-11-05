@@ -9,17 +9,13 @@ import Cart from './components/Main/Cart'
 
 function App() {
 
-
-  
-
-
   return (
     <div>
       <CartContextProvider >
         <BrowserRouter>
         <NavBar/>
         <Switch>
-        <Route exact path="/detailProducto/:id">
+        <Route exact path="/detailProducto/:nombre">
           <ItemDetailContainer/>
         </Route>
         <Route exact path="/Menu/:tipo">

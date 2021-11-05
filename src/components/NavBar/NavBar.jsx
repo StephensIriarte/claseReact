@@ -2,8 +2,13 @@ import React from 'react';
 import CartWidget from './CartWidget';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../context/cartContext';
+
 const NavBar = () => {
 
+  const {iconCart} = useCartContext()
+  console.log("aquiiiiii icon cart")
+  console.log(iconCart)
 
 return (
 
@@ -14,7 +19,8 @@ return (
     <Link to={`/Menu/2`}><a href="#frutasDesi">Frutas Deshidratada</a></Link>
     <Link to={`/Menu/3`}><a href="#semillas">Semillas</a></Link>
     <Link to={`/Menu/5`}><a href="#chocolates">Chocolates</a></Link>
-    <Link to={`/Cart/`}><a href="Cart"><CartWidget/></a></Link>
+    {iconCart()}
+    <Link to={`/Cart`}><a href="Cart"><CartWidget/></a></Link>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
   </div>
 )

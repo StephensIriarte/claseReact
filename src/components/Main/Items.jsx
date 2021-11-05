@@ -1,45 +1,39 @@
 import './items.css';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import ItemCount from  './ItemCount';
 import { Link } from 'react-router-dom';
-import { products } from '../data/data';
-import { useState, useContext } from 'react';
-import { CartContext } from '../context/cartContext';
+import { useState, useContext , cartContext,} from 'react';
+import {  useCartContext } from '../context/cartContext';
 
 
 
-const Items = ({id,nombre, stock, precio, img}) => {
+const Items = ({itemProducto}) => {
 
- 
-    const {cartList, agregarItem} = useContext(CartContext)
-    
 
-    const [button, setbutton]= useState("Añadir al carrito")
-   const onAdd = () => {
-     
-        agregarItem({id: id, nombre:nombre, img:img, precio:precio, stock:stock})
-    
- 
-     if( button === "Añadir al carrito")
-        setbutton("Añadido")
-   }
+
+    const {addToCart, carList} = useCartContext()
+
+        const onAdd = (clicks) => {
+             //addToCart( itemProducto, clicks)
+        }
         
     return (
-        <div>
-                     <Card sx={{ maxWidth: 345 }}>
-                      
-                        <div class="image"> <Link to={`/detailProducto/${id}`}><img src={img} alt="" width="100" height="100" /></Link> </div>
-                            <Typography align='center' gutterBottom variant="h5" component="div">{nombre}</Typography>
-                                <p class="price" align='center'>Precio: <strong>{precio} </strong></p>
-                               
-                                <div align='center'><Button variant="contained" color="success"  onClick={onAdd} ><span>{button}</span> </Button></div>
-                                
-                    </Card>
-
-        </div>     
+ 
+        <div class="p-4 md:w-1/2">
+            <div class="h-full border-2 border-gray-400 border-opacity-1000 rounded-lg overflow-hidden">
+                <Link to={`/detailProducto/${itemProducto.title}`}><img class="lg:h-56 md:h-42 w-full object-cover object-center" src={itemProducto.image} alt="blog"/></Link>   
+                 <div class="p-6">    
+                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Ofertas</h2>
+                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-800 mb-1">Precio {itemProducto.price} </h2>
+                     <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{itemProducto.title}</h1>
+                     <div class="flex items-center flex-wrap ">  
+                                <ItemCount initial={1} stock={itemProducto.stock} onAdd={onAdd} />
+                     </div> 
+                </div>                 
+            </div>                     
+        </div>            
+                    
+      
      
     )
-}
-
+    }
 export default Items

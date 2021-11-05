@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './NavBar.css';
-
+import cantProducto from '../Main/Items';
 
 const CartWidget = () => {
+
+    
     return (
         
-        <i class="gg-shopping-cart"></i>
-        
+        <div>    
+            <td><h1>{cantProducto}</h1></td>
+            <i class="gg-shopping-cart"></i>
+        </div>
     )
 }
 

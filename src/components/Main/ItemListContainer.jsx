@@ -1,81 +1,49 @@
 import React, {useEffect, useState} from 'react'
-import Items from './Items'
+import ItemList  from './ItemList'
 import Spinner from './spinner'
 import { useParams} from 'react-router'
-import ImageList from '@material-ui/core/ImageList';
-import { products } from '../data/data.js'
-import Divider from '@material-ui/core/Divider';
+import {getFirestore} from '../../Services/getFirebase'
 
 
 const ItemListContainer  = () => {
 
-    const { tipo } = useParams();
-    
-    if (!tipo) {
-        var itemTipo = products.filter( itemPro => itemPro.tipo > 0) 
-      
-    }
-    else{
-        var itemTipo = products.filter( itemPro => itemPro.tipo == tipo)     
-     
-    }
+    const [loading, setLoading] = useState(true)
+    const [items, setItems] = useState([])
+    const [item, setItem] = useState({})
+
+    const { idCategoria } = useParams()
 
 
-const [result , setResul] = useState(null)
-const [loading, setLoading] = useState(false)
 
+    useEffect(() => {
+        
+        
+        if (idCategoria) {
+            const db = getFirestore()
+            db.collection('Items').where('CategoriaID', '==', idCategoria).get() 
+            .then(resp => setItems( resp.docs.map(it => ({id: it.id, ...it.data() }) )) )            
+        } else {
+            const db = getFirestore()
+            db.collection('Items').get() //toda la colección
+            .then(resp => setItems( resp.docs.map(it => ({id: it.id, ...it.data() }) )) )
+            .catch(err => console.log(err) )
+            .finally(()=> setLoading(false))            
+        }
 
-const getProducts = new Promise ((resolve, reject) => {
-    
-    setTimeout(() => {   
-        setLoading(false);
-    resolve(itemTipo);
-    
-}, 3000 );
-});
+    }, [idCategoria])
 
-getProducts.then((result) => {
-    
-    setResul(result)
-    setLoading(true);
-},err => {
-    //console.log(result)
-}).catch((error) => {
-    //console.log(result)
-}).finally(() => {
-    //console.log(result)
-})
-
-//console.log(result)
 
 
 
     return (
       
-            <div>
+                <div>
+                            {loading ? <Spinner/> : 
+                                <ItemList  itemProducto={items} />            
+                             }        
 
-               
-                <br></br>
-                <br></br>
-                <div  class="items">
-                {!loading && <Spinner/>}   
-                    <Divider textAlign="left"> Ofertas</Divider>
-                    <br></br>
-                    <ImageList sx={{ width: 850, height: 800 }} cols={4} rowHeight={250}>
-                          {result && result.map((itemTipo) => (
-                             <Items 
-                                id ={itemTipo.id}
-                                nombre={itemTipo.nomProducto}
-                                stock={itemTipo.stock}
-                                precio = {itemTipo.precio}
-                                img ={itemTipo.img}/> 
-                           
-                           ))}
-                    <br></br>          
-                    </ImageList>         
-                </div>
-                           
-            </div>
+                </div>        
+           
                                    
     )
 }
