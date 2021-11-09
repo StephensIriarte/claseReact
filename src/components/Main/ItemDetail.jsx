@@ -1,21 +1,27 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
+import {  useCartContext } from '../context/cartContext';
 
-
-const ItemDetail = ({itemProducto}) => {
+const ItemDetail = ({itemDetalle}) => {
       
-    console.log("aquiiiiii detail222222")
-    console.log({itemProducto})
+
+    const {addToCart, carList} = useCartContext()
+
+    const onAdd = (clicks) => {
+        addToCart( itemDetalle, clicks)
+    }
+
         
           return (
+          <div>  
             <section class="text-gray-600 body-font overflow-hidden">
             <div class="container px-5 py-24 mx-auto">
               <div class="lg:w-4/5 mx-auto flex flex-wrap">
-              <div class="image"> <Link to={`/detailProducto/${itemProducto.id}`}><img src={itemProducto.image} alt="" width="400" height="400" /></Link> </div>
+              <div class="image"> <Link to={`/detailProducto/${itemDetalle.id}`}><img src={itemDetalle.image} alt="" width="400" height="400" /></Link> </div>
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                   <h2 class="text-sm title-font text-gray-500 tracking-widest">Oferta</h2>
-                  <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{itemProducto.title}</h1>
+                  <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{itemDetalle.title}</h1>
                   <div class="flex mb-4">
                     <span class="flex items-center">
                       <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-blue-500" viewBox="0 0 24 24">
@@ -56,7 +62,7 @@ const ItemDetail = ({itemProducto}) => {
                   <p class="leading-relaxed">Alimento tostado en seco, sin aceites ni sales añadidas. Ideal para agregar a tus snacks, picoteos, ensaladas y preparar tu propia mantequilla de maní casera.  </p>
                   <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                     <div class="flex">
-                        <ItemCount initial={1} stock={itemProducto.stock} />
+                        <ItemCount initial={1} stock={itemDetalle.stock}  onAdd={onAdd}/>
                     </div>
                     <div class="flex ml-6 items-center">
                       
@@ -67,13 +73,15 @@ const ItemDetail = ({itemProducto}) => {
                     </div>
                   </div>
                   <div class="flex">
-                    <span class="title-font font-medium text-2xl text-gray-900">$ {itemProducto.price}</span>
-                    <button class="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Agregar al Carrito</button>
+                    <span class="title-font font-medium text-2xl text-gray-900">$ {itemDetalle.price}</span>
+                    
                   </div>
                 </div>
               </div>
             </div>
           </section>
+        </div>    
+
           )
       }
 

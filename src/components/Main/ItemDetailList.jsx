@@ -1,17 +1,18 @@
 import { memo } from 'react'
-import Items from './Items'
+import ItemDetail from './ItemDetail'
 
 
-const ItemList = memo(
+
+const ItemDetailList = memo(
     ({itemProducto}) => {
         
           
             return (
-                <section class="text-gray-200 body-font">
+                <section class="text-gray-1500 body-font">
                     <div class="container px-20 py-36 mx-auto">
                         <div class="flex flex-wrap -m-4"> 
                             <div class="flex flex-wrap -m-4">
-                                     {itemProducto.map(itemProducto => <Items itemProducto={itemProducto} />  )}
+                                     {itemProducto.map(itemProducto => <ItemDetail itemDetalle={itemProducto} />  )}
                             </div>
                         </div>  
                     </div>   
@@ -23,4 +24,4 @@ const ItemList = memo(
 
     
     
-    export default ItemList
+export default ItemDetailList

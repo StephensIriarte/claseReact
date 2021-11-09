@@ -8,19 +8,19 @@ import {  useCartContext } from '../context/cartContext';
 
 const Items = ({itemProducto}) => {
 
-
-
     const {addToCart, carList} = useCartContext()
 
         const onAdd = (clicks) => {
-             //addToCart( itemProducto, clicks)
+            addToCart( itemProducto, clicks)
         }
         
+    
+
     return (
  
-        <div class="p-4 md:w-1/2">
-            <div class="h-full border-2 border-gray-400 border-opacity-1000 rounded-lg overflow-hidden">
-                <Link to={`/detailProducto/${itemProducto.title}`}><img class="lg:h-56 md:h-42 w-full object-cover object-center" src={itemProducto.image} alt="blog"/></Link>   
+        <div class="p-4 md:w-3/2">
+            <div class="h-full border-2 border-gray-500 border-opacity-500 rounded-lg overflow-hidden">
+                <Link to={`/detailProducto/${itemProducto.title}`}><img class="lg:h-40 md:h-80 w-full object-cover object-center" src={itemProducto.image} alt="blog"/></Link>   
                  <div class="p-6">    
                      <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Ofertas</h2>
                      <h2 class="tracking-widest text-xs title-font font-medium text-gray-800 mb-1">Precio {itemProducto.price} </h2>

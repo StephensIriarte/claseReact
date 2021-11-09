@@ -13,16 +13,20 @@ const ItemListContainer  = () => {
 
     const { idCategoria } = useParams()
 
-
+ 
 
     useEffect(() => {
         
         
         if (idCategoria) {
+
+            var idCat = idCategoria;
+
             const db = getFirestore()
-            db.collection('Items').where('CategoriaID', '==', idCategoria).get() 
+            db.collection('Items').where('CategoryID', '==', idCat).get() 
             .then(resp => setItems( resp.docs.map(it => ({id: it.id, ...it.data() }) )) )            
         } else {
+
             const db = getFirestore()
             db.collection('Items').get() //toda la colección
             .then(resp => setItems( resp.docs.map(it => ({id: it.id, ...it.data() }) )) )

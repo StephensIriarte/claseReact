@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/detailProducto/:nombre">
           <ItemDetailContainer/>
         </Route>
-        <Route exact path="/Menu/:tipo">
+        <Route exact path="/Menu/:idCategoria">
           <ItemListContainer/>
         </Route>
         <Route exact path="/Cart/">
