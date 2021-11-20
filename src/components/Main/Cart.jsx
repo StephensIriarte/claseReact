@@ -1,15 +1,20 @@
-import {useState} from 'react'
 import {  useCartContext } from '../context/cartContext';
 import CartForm from './CartForm'
-import firebase from 'firebase/app'
 import 'firebase/firestore'
-import {getFirestore} from '../../Services/getFirebase'
-
+import { Link } from 'react-router-dom';
 
 const Cart = () => {  
             
-        const {cartList, precioTotal, borrarLista, iconCart, deleteFromCart} = useCartContext()
+        const {cartList, precioTotal, iconCart, deleteFromCart} = useCartContext()
         
+        if (iconCart() === 0){
+            return (
+                <div class="flex flex-col text-center w-full mb-20">
+                    <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">No hay productos seleccionados</h1> 
+                </div>
+            )    
+         }
+     
         return (
         <>
 
@@ -33,14 +38,14 @@ const Cart = () => {
                                         <tbody>
                                                     {cartList.map(item => 
                                                     
-                                                            <tr id="myRow">
+                                                            <tr >
                                                                 <td class="image"> <img src={item.item.image} alt="" width="100" height="100" /> </td>
                                                                 <td class="px-4 py-3 title-font tracking-wider font-medium text-White-900 text-sm bg-White-100">{item.item.title} </td>
                                                                 <td class="px-4 py-3 title-font tracking-wider font-medium text-White-900 text-sm bg-White-100">{item.quantity} </td>
                                                                 <td class="px-4 py-3 title-font tracking-wider font-medium text-White-900 text-sm bg-White-100">{item.item.price} </td> 
                                                                 <td class="px-4 py-3 title-font tracking-wider font-medium text-White-900 text-sm bg-White-100">{item.item.price * item.quantity} </td> 
-                                                                <td><button variant="text"  onClick={()=>deleteFromCart({item})}>Eliminar</button></td>
-                                                                        
+                                                                <td><button class="text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-500 rounded text-lg"   onClick={()=>deleteFromCart(item)}>Eliminar</button></td>
+                                                                
                                                             </tr>
                                                     
                                                     )} 
@@ -54,6 +59,7 @@ const Cart = () => {
                                                         <div class="flex border-t border-gray-200 py-2">
                                                         <CartForm/> 
                                                         </div>
+                                                        <div> <Link to={`/`}><button class="text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-500 rounded text-lg">Seguir Comprando</button></Link></div>
                                                     </div>  
                                             </div> 
                                         

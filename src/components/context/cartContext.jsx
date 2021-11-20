@@ -18,8 +18,6 @@ export default function  CartContextProvider({children}){
     const addToCart = (item, quantity) => {
 
         const index = cartList.findIndex(i => i.item.id === item.id)
-        console.log("aquiiii index")
-        console.log(index)
     
           if (index > -1) {
             const oldQy = cartList[index].quantity
@@ -45,18 +43,21 @@ export default function  CartContextProvider({children}){
 
 
     const deleteFromCart = (item) => {
-        //Verificamos si esta en el carrito  
-        
         const deleteProduct = cartList.filter((prod) => prod.item.id !== item.item.id);
         
-        console.log(item)
+        console.log(deleteProduct)
         console.log("linea39 cartcontext")
         setCartList([...deleteProduct]);
+       // setCartList([])    
+
+
     };  
 
     function borrarLista(){
         setCartList([])
     }
+
+
 
     return(
         <CartContext.Provider value= {{

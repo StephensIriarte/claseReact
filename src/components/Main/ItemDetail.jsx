@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import {  useCartContext } from '../context/cartContext';
@@ -6,7 +5,7 @@ import {  useCartContext } from '../context/cartContext';
 const ItemDetail = ({itemDetalle}) => {
       
 
-    const {addToCart, carList} = useCartContext()
+    const {addToCart} = useCartContext()
 
     const onAdd = (clicks) => {
         addToCart( itemDetalle, clicks)

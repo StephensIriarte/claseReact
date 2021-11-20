@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import ItemDetailList  from './ItemDetailList'
-import Spinner from './spinner'
 import { useParams} from 'react-router'
 import {getFirestore} from '../../Services/getFirebase'
 

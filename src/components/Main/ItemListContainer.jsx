@@ -9,18 +9,18 @@ const ItemListContainer  = () => {
 
     const [loading, setLoading] = useState(true)
     const [items, setItems] = useState([])
-    const [item, setItem] = useState({})
+  
 
     const { idCategoria } = useParams()
 
- 
+
 
     useEffect(() => {
-        
-        
+       
         if (idCategoria) {
-
-            var idCat = idCategoria;
+           
+            var idCat = 0;
+            idCat = idCategoria;
 
             const db = getFirestore()
             db.collection('Items').where('CategoryID', '==', idCat).get() 
